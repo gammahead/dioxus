@@ -240,6 +240,7 @@ impl RouterContext {
                     panic!("route's display implementation must be parsable by FromStr")
                 }),
             None => R::from_str(&absolute_route).unwrap_or_else(|_| {
+                tracing::info!("Failed to parse route: {}", absolute_route);
                 panic!("route's display implementation must be parsable by FromStr")
             }),
         }
